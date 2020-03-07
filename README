@@ -1,0 +1,26 @@
+Protocol cu fereastra glisanta
+
+	Am implementat un protocol cu fereastra glisanta care transmite fisiere
+cand legatura de date nu pierde si nu corupe cadre.
+Pentru sender:
+Am calculat dimensiunea ferestrei cu parametrii primiti de send, folosind formula
+dim_fereastra = (1000*SPEED*DELAY)/(MSGSIZE*8).
+Am calculat lungimea fisierului din care citesc si dupa am calculat numarul de cadre.
+In cazul in care lungimea fisierului nu este multiplu de MSGSIZE voi creste 
+numarul de cadre care trebuie trimise.
+Prima data am trimis numele fisierului in care voi scrie si numarul de cadre pe
+care le voi trimite, vom continua doar daca primim confirmarea de conexiune.
+Am tratat doua cazuri: in primul caz numarul de cadre este mai mare decat 
+dimensiunea ferestrei si in al doilea caz numarul de cadre este mai mic decat 
+dimensiunea ferestrei. Pentru primul caz am trimis prima data mesaje pe intreaga
+fereastra, dupa astept astept confirmarea unui mesaj si trimit altul, dupa ce am
+trimis toate mesajele mai astept si confirmarile de la mesajele din fereastra. 
+In al doilea caz am trimis mesaje doaar pana la numarul de cadre si am asteptat
+tot atatea confirmari. Cum pachetele nu se pierd si nu se corup vom primi toate confirmarile.
+Pentru reciever:
+Asteptam mesajul trimis de sender si dupa trimitem confirmarea. Dupa stabilirea
+conexiunii voi astepta mesaje pana la numarul de cadre si vom scrie in fisier ce
+am primit. Pentru fiecare mesaj primit se trimite o confirmare.
+Mentionez ca am folosit laboratoarele 2 si 4 pentru a implementa acest protocol.
+
+
